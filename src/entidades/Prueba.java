@@ -215,7 +215,7 @@ public class Prueba {
 			arbitros = "";
 		}else {
 			for(Colegiado i: arbitraje) {
-				//arbitros += i.getPersona().getNombre();
+				arbitros = arbitros + i.getDatosPersona().getNombre();
 			} 
 		}
 		

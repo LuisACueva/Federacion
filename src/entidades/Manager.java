@@ -1,5 +1,10 @@
 package entidades;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import utils.Datos;
 import validaciones.Validaciones;
@@ -119,4 +124,36 @@ public class Manager {
 				+ persona.getFechaNac().getYear() + " Tfno1: " + telefono + " , Tfno2:" + persona.getTelefono() + "]";
 	}
 
+	public String data() {
+		
+		return this.getPersona().getId()+"|"+this.getPersona().getNombre()
+				+"|"+this.getPersona().getNifnie()+"|"+this.getPersona().getFechaNac()
+				+"|"+this.getPersona().getTelefono()+"|"+this.id+"|"+this.telefono
+				+"|"+this.direccion;
+	}
+	
+	
+	/**
+	 * Este método almacena los datos producidos por la funcion data()
+	 * en un String que luego se escribran en el archivo managers.txt
+	 * 
+	 * @param listManager
+	 * @throws IOException
+	 */
+	public void exportData(Manager[] listManager) throws IOException {
+		String datos = null;
+		
+		for(Manager i: listManager) {
+			datos += i.data() + "\n";
+		}
+		
+		File file = new File("managers.txt");
+		file.createNewFile();
+		FileWriter FW = new FileWriter(file, true);
+		BufferedWriter BW = new BufferedWriter(FW);
+		PrintWriter PW = new PrintWriter(BW);
+		
+		PW.print(datos);
+		
+	}
 }

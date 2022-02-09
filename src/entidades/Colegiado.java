@@ -32,6 +32,10 @@ public class Colegiado {
 		this.id = id;
 	}
 
+	public DatosPersona getDatosPersona() {
+		return this.persona;
+	}
+	
 	public Categoria getCategoria() {
 		return categoria;
 	}
