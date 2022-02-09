@@ -203,8 +203,26 @@ public class Prueba {
 
 	@Override
 	public String toString() {
-		return "Prueba [id=" + id + ", nombre=" + nombre + ", fecha=" + fecha + ", individual=" + individual
-				+ ", lugar=" + lugar + ", arbitraje=" + Arrays.toString(arbitraje) + ", resultado=" + resultado
+		String tipo;
+		if(individual) {
+			tipo = "individual";
+		}else {
+			tipo = "colectiva";
+		}
+		
+		String arbitros="";
+		if(arbitraje.length == 0) {
+			arbitros = "";
+		}else {
+			for(Colegiado i: arbitraje) {
+				//arbitros += i.getPersona().getNombre();
+			} 
+		}
+		
+		return  id + ". " + nombre + " (" + fecha + ") en" + lugar
+				+ " de tipo"+ tipo + "\n" 
+				+ arbitros + "\n" 
+				+ resultado
 				+ ", participantes=" + Arrays.toString(participantes) + "]";
 	}
 
