@@ -1,5 +1,6 @@
 package entidades;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -219,12 +220,20 @@ public class Prueba {
 			} 
 		}
 		
-		String results;
+		String results="";
 		
-		return  id + ". " + nombre + " (" + fecha + ") en" + lugar
+		SimpleDateFormat format = new SimpleDateFormat("dd/mm/YYYY");
+		
+		if(resultado != null) {
+			results += "Primer puesto: "+this.getResultado().getPodio()[0].getId()+" con el dorsal "+this.getResultado().getPodio()[0].getDorsal()+" por la calle "+this.getResultado().getPodio()[0].getCalle()+" Oro# "+ this.getResultado().getPrimero().getId()+".\n"
+		+"Segundo puesto: "+this.getResultado().getPodio()[1].getId()+" con el dorsal "+this.getResultado().getPodio()[1].getDorsal()+" por la calle "+this.getResultado().getPodio()[1].getCalle()+" Plata# "+ this.getResultado().getSegundo().getId()+".\n"
+			+"Tercer puesto: "+this.getResultado().getPodio()[2].getId()+" con el dorsal "+this.getResultado().getPodio()[2].getDorsal()+" por la calle "+this.getResultado().getPodio()[2].getCalle()+" Plata# "+ this.getResultado().getTercero().getId()+".";		;
+		}
+		
+		return  id + ". " + nombre + " (" + format.format(fecha) + ") en" + lugar
 				+ " de tipo"+ tipo + "\n" 
 				+ arbitros + "\n" 
-				+ resultado
+				+ results
 				+ ", participantes=" + Arrays.toString(participantes) + "]";
 	}
 
