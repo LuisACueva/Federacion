@@ -64,7 +64,7 @@ public class Principal4 {
 					System.out.println("Introduzca su contraseña:");
 					password = in.next();
 					cred = new Credenciales(usuario, password);
-					login = login(cred);
+					//login = login(cred);
 					if (!login)
 						System.out.println("ERROR: Usuario o password incorrectos.");
 					else
