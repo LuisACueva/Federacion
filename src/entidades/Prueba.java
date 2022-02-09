@@ -219,6 +219,8 @@ public class Prueba {
 			} 
 		}
 		
+		String results;
+		
 		return  id + ". " + nombre + " (" + fecha + ") en" + lugar
 				+ " de tipo"+ tipo + "\n" 
 				+ arbitros + "\n" 

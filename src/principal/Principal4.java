@@ -1,5 +1,11 @@
 package principal;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -574,4 +580,23 @@ public class Principal4 {
 		return true;
 	}
 
+	/**
+	 * Este método crea un fichero llamado juniors.dat
+	 * donde se guardan los nombres de aquellos atletas
+	 * nacidos despues del 1 de Enero del anno 2000
+	 * 
+	 * @throws IOException
+	 */
+	public static void exportAtletas() throws IOException {
+		File juniors = new File("juniors.dat");
+		juniors.createNewFile();
+		FileOutputStream FIS = new FileOutputStream(juniors);
+		ObjectOutputStream wr = new ObjectOutputStream(FIS);
+		
+		for(Atleta i: Datos.ATLETAS) {
+			if(i.getPersona().getFechaNac().isAfter(LocalDate.of(2000, 1, 1))) {
+				wr.writeBytes(i.getPersona().getNombre()+"\n");
+			}
+		}
+	}
 }
