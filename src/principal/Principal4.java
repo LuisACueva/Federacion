@@ -575,15 +575,64 @@ public class Principal4 {
 		System.out.println("" + "0. Volver");
 	}
 
-	private static boolean login(Credenciales cred) {
+	/**
+	 * Comprueba en el documento credenciales.txt los datos del orbejo
+	 * Credenciales que se hayan metido como paramtro
+	 * 
+	 * @param cred
+	 * @return true si las credenciales coninciden con alguna fila del fichero, false si nunca coincide.
+	 * @throws IOException
+	 */
+	private static boolean login(Credenciales cred) throws IOException {
 		// Por el momento siempre devolverá true
-		return true;
+
+		File file = new File("credenciales.txt");
+		FileInputStream FIS = new FileInputStream(file);
+
+		int c;
+		String usur = null;
+		String pass = null;
+		boolean espacio = false;
+		boolean secEspacio = false;
+
+		while ((c = FIS.read()) != -1) {
+			if (!secEspacio) {
+				if (c == 124) {
+					espacio = true;
+					continue;
+				}
+
+				if (c == 124 && espacio) {
+					secEspacio = true;
+					continue;
+				}				
+
+				if (!espacio) {
+					usur += (char) c;
+				} else {
+					pass += (char) c;
+				}
+			}else {
+				if (cred.getUsuario() == usur && cred.getPassword() == pass) {
+					return true;
+				}				
+				if(c == 10) {
+					usur="";
+					pass="";
+					espacio = false;
+					secEspacio = false;
+					continue;
+				}
+			}
+
+		}
+
+		return false;
 	}
 
 	/**
-	 * Este método crea un fichero llamado juniors.dat
-	 * donde se guardan los nombres de aquellos atletas
-	 * nacidos despues del 1 de Enero del anno 2000
+	 * Este método crea un fichero llamado juniors.dat donde se guardan los nombres
+	 * de aquellos atletas nacidos despues del 1 de Enero del anno 2000
 	 * 
 	 * @throws IOException
 	 */
@@ -592,11 +641,12 @@ public class Principal4 {
 		juniors.createNewFile();
 		FileOutputStream FIS = new FileOutputStream(juniors);
 		ObjectOutputStream wr = new ObjectOutputStream(FIS);
-		
-		for(Atleta i: Datos.ATLETAS) {
-			if(i.getPersona().getFechaNac().isAfter(LocalDate.of(2000, 1, 1))) {
-				wr.writeBytes(i.getPersona().getNombre()+"\n");
+
+		for (Atleta i : Datos.ATLETAS) {
+			if (i.getPersona().getFechaNac().isAfter(LocalDate.of(2000, 1, 1))) {
+				wr.writeBytes(i.getPersona().getNombre() + "\n");
 			}
 		}
 	}
+
 }
