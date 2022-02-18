@@ -21,7 +21,7 @@ public class Principal4 {
 
 	public static void main(String[] args) {
 		Datos.cerrarResultados();
-		System.out.println("INICIO");
+		System.out.println("INICIO DEL PROGRAMA");
 
 		Scanner in;
 		int elecc = -1;
