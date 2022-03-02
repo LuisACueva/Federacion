@@ -1,5 +1,6 @@
 package entidades;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -161,18 +162,43 @@ public class Manager {
 	}
 
 	public static void mapear() {
-		HashMap<Documentacion, Manager> capitalCities = new HashMap<Documentacion, Manager>();
+		HashMap<Documentacion, Equipo> mapManager = new HashMap<Documentacion, Equipo>();
 		
 		File file = new File("managers.txt");
+		String line;
 		try {
 			FileReader fr = new FileReader(file);
+			BufferedReader br = new BufferedReader(fr);
+			String[] campos = new String[8];
+			if(file.exists()) {
+				 while ((line = br.readLine()) != null) {     
+					 campos = br.readLine().split("|");
+					 Manager mng = null;
+					 Equipo eqp = null;
+					 for(Manager a: Datos.MANAGERS) {
+						 if(a.getPersona().getNifnie().toString() == campos[2]) {
+							 mng = a;
+							 break;
+						 }
+					 }
+					 
+					 for(Equipo a: Datos.EQUIPOS) {
+						 if(a.getManager() == mng) {
+							 eqp = a;
+							 break;
+						 }						 
+					 }
+					 mapManager.put(mng.getPersona().getNifnie(), eqp);
+			        }
+			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		if(file.exists()) {
-			
-		}
+		
 	}
 	
 	public void importData() throws Exception {
