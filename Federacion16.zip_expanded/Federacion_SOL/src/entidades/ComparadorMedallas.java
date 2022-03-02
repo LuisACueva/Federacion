@@ -20,7 +20,7 @@ public class ComparadorMedallas implements Comparator<Metal> {
 	 */
 	public static void printMedallasInOrder() {
 		LinkedList arl = new LinkedList();
-		Iterator <Metal> itr = arl.iterator();
+		
 		
 		for(Metal a: Datos.OROS) {
 			arl.add(a);
@@ -34,6 +34,7 @@ public class ComparadorMedallas implements Comparator<Metal> {
 			arl.add(a);
 		}
 		
+		Iterator <Metal> itr = arl.iterator();
 		while(itr.hasNext()) {
 			System.out.println(itr.next());
 		}
