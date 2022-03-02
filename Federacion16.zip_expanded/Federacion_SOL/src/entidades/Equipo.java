@@ -1,6 +1,7 @@
 package entidades;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 public class Equipo extends Participante {
 	private long idEquipo;
@@ -64,5 +65,18 @@ public class Equipo extends Participante {
 		return ret;
 	}
 
-
+	public static Equipo nuevoEquipo() {
+		Scanner sc = new Scanner(System.in);
+		Equipo ret = null;
+		long idE;
+		int anio;
+		System.out.println("Introduce el id del equipo");
+		idE = sc.nextLong();
+		System.out.println("Introduce el anio de inscripcion");
+		anio = sc.nextInt();
+		
+		ret.setId(idE);
+		ret.setAnioinscripcion(anio);
+		return ret;
+	}
 }

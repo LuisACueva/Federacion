@@ -476,6 +476,7 @@ public class Principal4 {
 			break;
 		case 2: // opción 2.2
 			System.out.println("Ha seleccionado 2.2 INSCRIPCIÓN de EQUIPO en PRUEBA.");
+//			Equipo eqp = Equipo.n
 			break;
 		default:
 		}
