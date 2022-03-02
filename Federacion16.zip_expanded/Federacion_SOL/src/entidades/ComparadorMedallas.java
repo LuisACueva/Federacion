@@ -35,9 +35,10 @@ public class ComparadorMedallas implements Comparator<Metal> {
 		}
 		
 		while(itr.hasNext()) {
-			System.out.println("Medalla: "+itr.next());
+			System.out.println(itr.next());
 		}
 	
 	}
 
 }
+
