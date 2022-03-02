@@ -1,9 +1,10 @@
 package entidades;
 
+import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class Equipo extends Participante {
+public class Equipo extends Participante implements Serializable {
 	private long idEquipo;
 	private int anioinscripcion;
 	private Manager manager;

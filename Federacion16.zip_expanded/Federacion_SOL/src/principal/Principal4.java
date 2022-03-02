@@ -1,7 +1,7 @@
 package principal;
 
+import java.io.BufferedReader;
 import java.io.File;
-import entidades.ComparadorMedallas;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -476,7 +476,54 @@ public class Principal4 {
 			break;
 		case 2: // opción 2.2
 			System.out.println("Ha seleccionado 2.2 INSCRIPCIÓN de EQUIPO en PRUEBA.");
-//			Equipo eqp = Equipo.n
+			Equipo eqp = Equipo.nuevoEquipo();
+			System.out.println("¿Son correctos los siguientes datos?");
+			System.out.println(eqp.toString());
+
+			File file = new File("pruebas.txt");
+			String line;
+			FileReader fr;
+			try {
+				fr = new FileReader(file);
+				BufferedReader br = new BufferedReader(fr);
+				String[] campos = new String[5];
+				if (file.exists()) {
+					while ((line = br.readLine()) != null) {
+						campos = br.readLine().split("|");
+						
+						if(campos[4]=="false") {
+							System.out.println(line);
+						}
+					}
+
+					System.out.println("Introduzca el id de la prueba en la que quiera inscribirse");
+					String idprueba = in.next();
+					
+					while ((line = br.readLine()) != null) {
+						campos = br.readLine().split("|");
+						
+						if(campos[0]==idprueba) {
+							System.out.println("¿Confirma la inscripción?");
+							boolean con = Utilidades.leerBoolean();
+							
+							if(con) {
+								File inscripcion = new File("inscrip_"+idprueba+"_"+eqp.getManager().getId()+".dat");
+								FileOutputStream fos = new FileOutputStream(inscripcion);
+								ObjectOutputStream escribir = new ObjectOutputStream(fos);
+								escribir.writeObject(eqp);
+							}
+						}
+					}
+				}
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+
 			break;
 		default:
 		}
@@ -517,15 +564,16 @@ public class Principal4 {
 				System.out.println("¿Confima su elección?:");
 				confi2 = Utilidades.leerBoolean();
 			} while (!confi2);
-			
-			FileWriter fw = new FileWriter("inscrip_"+idp+"_"+atl.getPersona().getNifnie());
-			fw.write(atl.toString()+idp+LocalDateTime.now());
+
+			FileWriter fw = new FileWriter("inscrip_" + idp + "_" + atl.getPersona().getNifnie());
+			fw.write(atl.toString() + idp + LocalDateTime.now());
 			fw.close();
-			
-			System.out.println("Se ha creado el fichero "+ "inscrip_"+idp+"_"+atl.getPersona().getNifnie() +" a "+ LocalDateTime.now()+" en el que el atleta" 
-					+ atl.getId() + " de nombre "+ atl.getPersona().getNombre()+ " y NIF/NIE " + atl.getPersona().getNifnie() + " queda inscrito en la prueba " 
-					+ idp);
-			
+
+			System.out.println("Se ha creado el fichero " + "inscrip_" + idp + "_" + atl.getPersona().getNifnie()
+					+ " a " + LocalDateTime.now() + " en el que el atleta" + atl.getId() + " de nombre "
+					+ atl.getPersona().getNombre() + " y NIF/NIE " + atl.getPersona().getNifnie()
+					+ " queda inscrito en la prueba " + idp);
+
 			break;
 		default:
 		}
