@@ -9,6 +9,7 @@ public abstract class Metal {
 	
 	public LocalDate fecha;
 	public boolean asignada = false;
+	public float pureza;
 	
 	public Metal() {
 	}
@@ -30,6 +31,12 @@ public abstract class Metal {
 	}
 	public void setAsignada(boolean asignada) {
 		this.asignada = asignada;
+	}
+	public float getPureza() {
+		return pureza;
+	}
+	public void setPureza(float pureza) {
+		this.pureza = pureza;
 	}
 	
 }

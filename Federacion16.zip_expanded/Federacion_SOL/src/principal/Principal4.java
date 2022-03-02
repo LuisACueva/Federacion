@@ -1,6 +1,7 @@
 package principal;
 
 import java.io.File;
+import entidades.ComparadorMedallas;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -22,7 +23,8 @@ public class Principal4 {
 	public static void main(String[] args) {
 		Datos.cerrarResultados();
 		System.out.println("INICIO DEL PROGRAMA");
-
+		ComparadorMedallas.printMedallasInOrder();
+		System.out.println("INICIO DEL PROGRAMApppppppppppppppppppppppppppppppppppppppppppppppppp");
 		Scanner in;
 		int elecc = -1;
 		Rol rol; // Examen 4 Ejercicio 3A
