@@ -163,7 +163,16 @@ public class Manager {
 	public static void mapear() {
 		HashMap<Documentacion, Manager> capitalCities = new HashMap<Documentacion, Manager>();
 		
-		
+		File file = new File("managers.txt");
+		try {
+			FileReader fr = new FileReader(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(file.exists()) {
+			
+		}
 	}
 	
 	public void importData() throws Exception {

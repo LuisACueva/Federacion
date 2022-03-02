@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 import utils.Datos;
 
@@ -11,20 +12,14 @@ public class ComparadorMedallas implements Comparator<Metal> {
 
 	@Override
 	public int compare(Metal o1, Metal o2) {
-		if (o1.getPureza() > o2.getPureza()) {
-			return 1;
-		} else if (o1.getPureza() < o2.getPureza()) {
-			return -1;
-		} else {
-			return 0;
-		}
+		return Math.round(o1.getPureza()-o2.getPureza());
 	}
 	
 	/**
 	 * Imprime por pantalla todas las medallas por orde de su puereza
 	 */
 	public static void printMedallasInOrder() {
-		ArrayList arl = new ArrayList();
+		LinkedList arl = new LinkedList();
 		Iterator <Metal> itr = arl.iterator();
 		
 		for(Metal a: Datos.OROS) {
@@ -39,11 +34,10 @@ public class ComparadorMedallas implements Comparator<Metal> {
 			arl.add(a);
 		}
 		
-		Collections.sort(arl);
-		
 		while(itr.hasNext()) {
-			System.out.println(itr.next());
+			System.out.println("Medalla: "+itr.next());
 		}
+	
 	}
 
 }
