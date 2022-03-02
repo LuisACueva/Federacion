@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.Scanner;
 import utils.Datos;
 import validaciones.Validaciones;
@@ -159,6 +160,12 @@ public class Manager {
 
 	}
 
+	public static void mapear() {
+		HashMap<Documentacion, Manager> capitalCities = new HashMap<Documentacion, Manager>();
+		
+		
+	}
+	
 	public void importData() throws Exception {
 		File fl = new File("managers.txt");
 		FileReader fr = new FileReader(fl);
