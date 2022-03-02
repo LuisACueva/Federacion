@@ -1,6 +1,7 @@
 package principal;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,8 +11,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Scanner;
 
 import entidades.*;
@@ -511,6 +515,24 @@ public class Principal4 {
 								FileOutputStream fos = new FileOutputStream(inscripcion);
 								ObjectOutputStream escribir = new ObjectOutputStream(fos);
 								escribir.writeObject(eqp);
+								escribir.write('\n');
+								escribir.writeLong(Long.parseLong(idprueba));
+								escribir.write('\n');
+								escribir.writeObject(LocalDateTime.now());
+								
+								FileInputStream  fis = new FileInputStream(inscripcion);
+								DataInputStream dis = new DataInputStream(fis);
+								
+								if(dis.available()>0) {
+									LocalDate localDate = LocalDate.now();
+									DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YY hh:mm:ss");
+									String fechahora = localDate.format(formatter);
+									
+									System.out.println("Se ha creado el fichero "+inscripcion.getName()+" a "
+											+ fechahora+" en el que el equipo "+eqp.getId() + " representado por "
+											+ eqp.getManager().getPersona().getNombre() + "("+eqp.getManager().getPersona().getNifnie()+")"
+											);
+								}
 							}
 						}
 					}
